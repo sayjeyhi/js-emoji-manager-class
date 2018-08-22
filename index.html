@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+          content="جعفر رضائی,جعفر رضایی,مهندس جعفر رضائی,jafar rezaei,web developer rezaei,javascript rezaei,fullstack rezaei,php senior rezaei">
+    <title>جعفر رضائی|JafarRezaei</title>
+    <link rel="stylesheet" href="public/Css/main.css"/>
+    <link rel="icon" href="public/Images/me.jpg">
+    <link rel="shortcut icon" href="public/Images/me.jpg">
+    <meta property="og:image" content="http://jrjs.ir/public/Image/me.jpg"/>
+    <meta property="og:title" content="پروژه مرحله غیرحضوری مسابقات فن آورد"/>
+    <meta property="og:site_name"
+          content="من جعفر رضائی هستم ، یه برنامه نویس خلاق وب ، حدود ۱۰ سـال هست که با و کدنویسی انجام میدم یه آدم قد بلند هستم ، یه مدت بود میخاستم روی سـایتم کار کنم ولی وقت نمیشد و بلاخره پس از دو سال اینو ساختم خب برای یه کم بازی و لذت بردن از سایت من وارد لینک شده و اسکرول کنید . "/>
+    <meta property="og:url" content="http://jrjs.ir"/>
+</head>
+
+
+<body>
+
+
+<div id="index-banner" class="parallax-container" style="height: 100px !important">
+    <div class="parallax">
+        <h1 class="header center light">مسابقات فن آورد </h1>
+        <div class="row center">
+            <h3 class="sdf" style="margin-top: 50px;color: #f5f526;margin-bottom: 25px">مدیریت شکلک ها . نگارش ۰.۱</h3>
+            <a style="color:#fff;" target="_blank" href="../docs/index.html">مستندات</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+
+        <div class="myTextSampleContent">
+
+            <h3>تگ input با بک گراند آبی :</h3>
+            <input type="text" id="inputEmojiManager" class="searchEmoji"/>
+            <br/>
+
+            <h3>چپ چین با زبان ترکی استانبولی و رنگ سبز :</h3>
+            <textarea id="textAreaEmojiManager" class="searchEmoji"></textarea>
+
+            <h3 style="">راست چین با زبان ترکی :</h3>
+            <textarea id="textAreaEmojiManagerRTL" class="searchEmoji" style="text-align: right"></textarea>
+
+            <br/>
+
+            <h3>
+				<select id="choosePositionEmojiManger" style="float:left;position:relative;top:10px">
+					<option value="absolute">براساس موقعیت مکان caret</option>
+					<option value="fixed-top-right">ثابت بالا سمت راست</option>
+					<option value="fixed-top-left">ثابت بالا سمت چپ</option>
+					<option value="fixed-bottom-right">ثابت پایین سمت راست</option>
+					<option value="fixed-bottom-left" selected>ثابت پایین سمت چپ</option>
+				</select>
+				روی تگ div با ویژگی contentEditable با پس زمینه قرمز و position ثابت برای انتخاب گر [draggable - red
+                background] :
+			</h3>
+            <div id="divEmojiManager" class="searchEmoji" contenteditable="true">شروع نوشتن ...</div>
+
+        </div>
+        <div class="messageBottom">
+            در بخش های بالا تایپ کنید ، واژه های خنده - گریه - مداد - کیف و ... تبدیل میشوند <span
+                style="font-size: 11px;">[این واژه ها در فایل emoji_json قابل تعریف و تغییر می باشند]</span>
+        </div>
+    </div>
+</div>
+
+
+<footer class="page-footer">
+    <div class="container">
+        <i class="linearicon linearicon-brain"></i> کپی راست برای <a href="http://www.jrjs.ir" target="_blank">جعفر
+        رضایی</a> محفوظ می باشد
+    </div>
+</footer>
+
+
+<!-- Add Main Project script -->
+<script type="application/javascript" src="public/Javascript/jRun.js"></script>
+<script type="application/javascript">
+    jRun.init([
+            {url: "emoji/emoji.min.css"},
+            {url: "emoji_json", kind: "Fanavard"},
+            {url: "linerIcons.css", kind: "Icons"},
+            {url: "emoji", kind: "Fanavard"}
+        ], function () {
+
+            // On input
+            new EmojiManager({
+                selector: '#inputEmojiManager',
+                background: '#6E8FFF',
+                draggable: true,
+                rtl: true,
+                title: 'انتخاب شکلک'
+            });
+
+
+            // On textarea
+            new EmojiManager({
+                selector: '#textAreaEmojiManager',
+                background: '#5de83d',
+                draggable: true,
+                rtl: false,
+                title: 'Emojiyi seç'
+            });
+
+            // On textarea
+            new EmojiManager({
+                selector: '#textAreaEmojiManagerRTL',
+                background: '#2b6c1c',
+                draggable: true,
+                rtl: true,
+                title: 'شکلک انتخاب المغی'
+            });
+
+
+            // On contentEditable
+            var SelectPosition = new EmojiManager({
+                selector: '#divEmojiManager',
+                draggable: true,
+                background: '#F00000',
+                afterChoose: function (emojiName) {
+                    log("emoji : " + emojiName);
+                },
+                position: 'fixed-bottom-left'
+            });
+		
+			document.getElementById("choosePositionEmojiManger").addEventListener("change" ,  function(e){
+				SelectPosition.settings.position = this.value;
+			});
+		
+        }
+    );
+</script>
+
+
+</body>
+</html>
